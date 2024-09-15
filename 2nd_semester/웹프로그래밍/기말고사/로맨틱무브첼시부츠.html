@@ -1,0 +1,131 @@
+﻿
+
+
+<!--20194111 최민규-->
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>20194111 최민규-뉴 탐페레 첼시부츠</title><!--페이지 타이틀을 학번, 이름으로 지정-->
+    <!--CSS 활용 해 페이지 스타일 지정-->
+    <style>
+        body{font-family: "a시월구일1",Arial;}
+        h1 { font-family:"a시월구일3",Times New Roman,Arial; color: black; font-size: 30pt; text-align:center;}
+        h1 em { font-family:"a시월구일3",Arial; color:gray;text-align:center;}
+        .cent {text-align: center;}
+        .exp {font-family:"a시월구일1",Arial; text-align:center; color:red; }
+        .detail { color:deeppink; text-align: center; background-color: yellow;}
+        .sub {font-style: bold; color: deeppink; font-size:18pt;}
+        img.bd {border:1px solid black;}
+        div#rht {float:right;}
+        #del {font-size:13pt;text-decoration:line-through;}
+    </style>
+</head>
+
+<body>
+    <!--페이지 제목을 가장 상단에 헤딩을 이용 해 표시-->
+    <a href="20194111 최민규.html" target="_self"><h1>Choi's <em>Sneakers</em></h1></a>
+    <hr />
+    <!--제품 이름을 헤딩을 이용 해 크게 표시-->
+    <p class="sub"><b>뉴 탐페레 첼시 부츠 R17M077(블랙)</b></p>
+    <!--제품 썸네일-->
+    <img class="bd" src="로맨틱무브썸네일.jpg" alt="제품썸네일" />
+    <!--제품에 대한 간단한 소개, 가격, 구매버튼-->
+    <div id="rht">
+        <p id="del">제품 정가:198,000원</p>
+        <p>할인 적용가</p>
+        <p class="sub"><b>129,000원</b></p>
+        <p>
+            첼시부츠의 기준이 될 수 있는 디자인,
+            <br />군더더기 없이 딱 떨어지는 Shape을 갖춘 첼시 부츠.
+            <br />
+            <br />
+            무료배송
+            <br />
+            <br />
+            <form action="input.jsp" method="post">
+                컬러 선택<!--컬러 메뉴를 select 요소로 구현-->
+                <select name="color">
+                    <option value="none" selected>컬러</option>
+                    <option value="black">블랙</option>
+                    
+                </select>
+                사이즈 선택<!--사이즈 메뉴를 select 요소로 구현-->
+                <select name="size">
+                    <option value="none" selected>사이즈</option>
+                    <option value="220">220</option>
+                    <option value="220">225</option>
+                    <option value="230">230</option>
+                    <option value="230">235</option>
+                    <option value="240">240</option>
+                    <option value="240">245</option>
+                    <option value="250">250</option>
+                    <option value="250">255</option>
+                    <option value="260">260</option>
+                    <option value="260">265</option>
+                    <option value="270">270</option>
+                    <option value="270">275</option>
+                    <option value="280">280</option>
+                    <option value="280">285</option>
+                    <option value="290">290</option>
+                    <option value="290">295</option>
+                </select>
+                </br>
+                </br>
+                <!--구매버튼은 이미지 버튼으로 구현 (제출 버튼)-->
+                <button type="submit"><img src="구매버튼.jpg" width="300" height="60" alt="구매버튼" /></button>
+                <br /><br />
+                <input type="button" value="장바구니" onclick="window.open('장바구니.html','_blank')">
+            </form>
+
+        </p>
+    </div>
+    <hr />
+    <!--제품에 대한 자세한 설명-->
+    <pre class="exp">
+    <b>
+    * 해당 상품의 경우 제작 상품인 관계로 결제일 기준 제작 기간 영업일 기준 7~10일 약 2주 정도 안내 해 드리고 있으나,
+      현재 주문 폭주로 인해 평균 제작 기간보다 약 3~4영업일 지연이 되어 약 3~4주 소요될 것으로 예상됩니다.
+      최대한 서둘러 제작하여 출고할 수 있도록 하겠습니다.
+
+      주문(결제) 이후에는 주문 내용의 변경 또는 취소가 불가능한 점 유의하여 주시기 바랍니다.
+
+    (※ 현재 주문폭주로 인해 평균 제작 기간보다 약 3~4영업일 지연될 수 있는 점 양해 부탁드립니다.)
+    </b>
+    </pre>
+    <ul>
+        <li>천연 소가죽 사용</li>
+        <li>EVA메모리폼 삽입으로 우수한 복원력과 적은 피로도</li>
+        <li>접지력을 생각한 논슬립 디자인</li>
+        <li>높은 고무 함유율로 튼튼한 내구성</li>
+        <li>고급스러움이 강조되는 나무굽 사용</li>
+    </ul>
+
+    <table border="1" class="cent">
+        <tr>
+            <td>상품 상태</td>
+            <td>새상품</td>
+        </tr>
+        <tr>
+            <td>배송 방법</td>
+            <td>택배</td>
+        </tr>
+        <tr>
+            <td>배송 가능 지역</td>
+            <td>전국</td>
+        </tr>
+        <tr>
+            <td>원산지</td>
+            <td>국내</td>
+        </tr>
+    </table>
+    <hr />
+
+    <!--제품 상세 이미지-->
+    <h2 class="detail">&lt;제품 상세 이미지&gt;</h2>
+    <img src="로맨틱무브상세.jpg" />
+    <hr />
+</body>
+
+</html>

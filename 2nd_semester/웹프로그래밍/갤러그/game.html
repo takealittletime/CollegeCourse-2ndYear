@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>20194111Galaga</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        canvas {
+            background: #000000;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="myCanvas" width="500" height="720"></canvas>
+
+    <script>
+
+        //create
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+
+        //background
+        var backg = new Image();
+        backg.src = "backg.png";
+        function drawBackg(){
+            ctx.drawImage(backg,0,0);
+        }
+        
+        var x = canvas.width/2;
+        var y = canvas.height-30;
+        
+        //player(spaceship)
+        var playerWidth = 60;
+        var playerHeight = 82;
+        var playerX = (canvas.width-playerWidth)/2
+        var player = new Image();
+        player.src = "player.png";
+
+        function drawPlayer(){
+            ctx.drawImage(player,playerX,canvas.height-playerHeight);
+        }
+
+        //monster
+        var mon1 = new Image;
+        mon1.src = "mon1.png";
+        var mon2 = new Image;
+        mon2.src = "mon2.png";
+        var monsterRowCount = 1;
+        var monsterColumnCount = 4;
+        var monsterWidth = 65;
+        var monsterHeight = 80;
+        var monsterPadding = 60;
+        var monsterOffsetTop = 30;
+        var monsterOffsetLeft = 30;
+
+        var monster = [];
+        for(var c=0; c<monsterColumnCount; c++) {
+         monster[c] = [];
+            for(var r=0; r<monsterRowCount; r++) {
+             monster[c][r] = { x: 0, y: 0 , status: 1};
+            }
+        }
+
+        //to move monster
+        var mmovxE = 0;
+        var mmovxO = 0;
+        var dxE = -0.7;
+        var dxO = 1.4;
+
+        function drawMonster() {
+            for(var c=0; c<monsterColumnCount; c++) {
+                for(var r=0; r<monsterRowCount; r++) {
+                    if (monster[c][r].status==1)
+                    {
+                        
+                        if (r%2==0)
+                            {
+                                var monsterX = (c*(monsterWidth+monsterPadding))+monsterOffsetLeft+mmovxE;
+                                var monsterY = (r*(monsterHeight+monsterPadding))+monsterOffsetTop;
+                                monster[c][r].x = monsterX;
+                                monster[c][r].y = monsterY;
+                                ctx.drawImage(mon1,monsterX,monsterY);
+                            }
+
+                        else
+                            {
+                                var monsterX = (c*(monsterWidth+monsterPadding))+monsterOffsetLeft+mmovxO;
+                                var monsterY = (r*(monsterHeight+monsterPadding))+monsterOffsetTop;
+                                monster[c][r].x = monsterX;
+                                monster[c][r].y = monsterY;
+                                ctx.drawImage(mon2,monsterX,monsterY);
+                            }
+                        
+                    }
+                 
+                }
+            }
+        }
+
+        function collisionDetection(bx,by) {
+            for(var c=0; c<monsterColumnCount; c++) {
+                for(var r=0; r<monsterRowCount; r++) {
+                    var b = monster[c][r];
+                    if(b.status == 1)
+                    {
+                        if(bx > b.x && bx < b.x+monsterWidth && by > b.y && by < b.y+monsterHeight) 
+                        {
+                            b.status = 0;
+                            score += 10;
+                            stageScore += 1;
+                            if(stageScore == monsterRowCount*monsterColumnCount) {
+                                stageScore = 0;
+                                setStage();
+                            }
+                            return 1;
+                        }
+                    }
+                }
+            }
+        }
+    
+        function playerDamaged (bx,by){
+            if(bx > playerX && bx < playerX+playerWidth &&
+             by >canvas.height-playerHeight  && by < canvas.height-playerHeight+monsterHeight) 
+                        {
+                            lives--;
+                            if (lives == 0)
+                            {
+                                gameOver();
+                            }
+                            
+                            return 1;
+                        }
+        }
+
+        //monster's ball of Odd Row
+        var mBallsO = new Array();
+        var midxO = 0;
+        //monster's ball of Even Row
+        var mBallsE = new Array();
+        var midxE = 0;
+
+        function putMball()
+        {
+            for (var c=0; c<monsterColumnCount; c++)
+            {
+                for (var r = 0; r < monsterRowCount; r++)
+                {
+                    var b = monster[c][r];
+                    if (b.status == 1)
+                    {
+                        if (r%2==0)
+                        {
+                            mBallsE[midxE] = new Ball (b.x+monsterWidth/2,b.y+monsterHeight);
+                            midxE++;
+                        }
+                        else
+                        {
+                            mBallsO[midxO] = new Ball(b.x+monsterWidth/2,b.y+monsterHeight);
+                            midxO++;
+                        }
+                    }
+                }
+            }
+        }
+
+        //player's ball
+        var balls = new Array();
+        var idx = 0;
+
+        function Ball (x, y)
+        {
+            this.x = x;
+            this.y = y;
+      
+        }
+        
+        function drawBall(x,y,color) {
+            
+            ctx.beginPath();
+            ctx.arc(x, y, 5, 0, Math.PI*2);
+            ctx.fillStyle = color;
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        //score
+        var score = 0;
+        function drawScore() {
+            ctx.font = "16px Arial";
+            ctx.fillstyle = "skyblue";
+            ctx.fillText("Score: "+score,8,20);
+        }
+
+        //lives
+        var lives = 3;
+        var livimg = new Image();
+        livimg.src = "lives.png";
+
+        function drawLives() {
+
+            for (var i = 0; i < lives; i++)
+            {
+                ctx.drawImage(livimg,canvas.width-40-32*i,2);
+            }
+            
+        }
+
+        //stage
+        var stage = 1;
+        var stageScore = 0;
+        function drawStage() {
+            ctx.font = "16px Arial";
+            ctx.fillStyle = "yellow";
+            ctx.fillText("<Stage: "+stage+">", canvas.width/2-60, 20);
+        }
+
+        function setStage() {
+            stage++;
+            if (stage > 3)
+            {
+                alert("YOU WIN, CONGRATULATIONS!");
+                document.location.reload();
+                clearInterval(interval);
+            }
+            monsterRowCount++;
+            for(var c=0; c<monsterColumnCount; c++) {
+                monster[c] = [];
+                for(var r=0; r<monsterRowCount; r++) 
+                {
+                    monster[c][r] = { x: 0, y: 0 , status: 1};
+                }
+            }
+        }
+
+        function gameOver(){
+            alert("Game Over");
+                document.location.reload();
+                clearInterval(interval);
+        }
+        
+
+        //key down
+        var rightPressed = false;
+        var leftPressed = false;
+        var uPressed = false;
+
+        document.addEventListener("keydown", keyDownHandler, false);
+        document.addEventListener("keyup", keyUpHandler, false);
+
+        function keyDownHandler(e) {
+            if(e.key == "Right" || e.key == "ArrowRight") {
+                rightPressed = true;
+            }
+            else if(e.key == "Left" || e.key == "ArrowLeft") {
+                leftPressed = true;
+            }
+            else if(e.key == "ArrowUp"){
+                uPressed = true;
+            }
+        }
+
+        function keyUpHandler(e) {
+            if(e.key == "Right" || e.key == "ArrowRight") {
+                rightPressed = false;
+            }
+            else if(e.key == "Left" || e.key == "ArrowLeft") {
+                leftPressed = false;
+            }
+            else if (e.key == "ArrowUp"){
+                uPressed = false;
+            }
+        }
+
+        //execute
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawBackg();
+            drawPlayer();
+            drawMonster();
+            drawScore();
+            drawLives();
+            drawStage();
+            putMball();
+            
+           
+            
+
+            for (var i = 0; i <mBallsO.length; i++)
+            {
+                if(playerDamaged(mBallsO[i].x,mBallsO[i].y,))
+                    mBallsO[i].x = 1000;
+                if (i%149 == 0)
+                {
+                    drawBall(mBallsO[i].x,mBallsO[i].y,"orange");
+                    mBallsO[i].y += 4;
+                }
+                if (midxO>3000)
+                {
+                    midxO = 0;
+                }
+                
+            }
+            
+            
+            for (var i = 0; i <mBallsE.length; i++)
+            {
+                if(playerDamaged(mBallsE[i].x,mBallsE[i].y,))
+                    mBallsE[i].x = 1000;
+                if (i%299 == 0)
+                {
+                    drawBall(mBallsE[i].x,mBallsE[i].y,"red");
+                    mBallsE[i].y += 4;
+                }
+                if (midxE>3000)
+                {
+                    midxE = 0;
+                }
+                
+            }
+            
+            for (var i=0; i<balls.length; i++ )
+            {
+                if (collisionDetection(balls[i].x,balls[i].y))
+                    balls[i].x = 1000;
+
+                if (i%10 == 0)
+                {
+                    drawBall(balls[i].x, balls[i].y,"#0095DD");
+                    balls[i].y -= 10;
+                }
+                if (idx>100)
+                {
+                    idx = 0;
+                }
+            }
+            
+
+            if (uPressed){
+                balls[idx] = new Ball(playerX+30,y-50);
+                idx++;
+            }
+
+            
+            if(rightPressed) {
+                playerX += 5;
+                if (playerX + playerWidth > canvas.width){
+                    playerX = canvas.width - playerWidth;
+                }
+            }
+            else if(leftPressed) {
+                playerX -= 5;
+                if (playerX < 0){
+                    playerX = 0;
+                }
+            }
+
+
+            if (mmovxE < -(monsterOffsetLeft) || mmovxE>(monsterOffsetLeft))
+                dxE = -dxE;
+            if (mmovxO < - (monsterOffsetLeft)||mmovxO>(monsterOffsetLeft))
+                dxO = -dxO;
+            mmovxE += dxE;
+            mmovxO += dxO;
+
+
+        }
+
+        setInterval(draw, 10);
+        
+    </script>
+
+</body>
+</html>

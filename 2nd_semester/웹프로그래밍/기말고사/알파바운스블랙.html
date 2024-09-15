@@ -1,0 +1,109 @@
+﻿
+
+
+<!--20194111 최민규-->
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>20194111 최민규 - 알파바운스</title><!--페이지 타이틀을 학번, 이름으로 지정-->
+    <!--CSS 활용 해 페이지 스타일 지정-->
+    <style>
+        body{font-family: "a시월구일1",Arial;}
+        h1 { font-family:"a시월구일3",Times New Roman,Arial; color: black; font-size: 30pt; text-align:center;}
+        h1 em { font-family:"a시월구일3",Arial; color:gray;text-align:center;}
+        .cent {text-align: center; clear:both;}
+        .detail { color:deeppink; text-align: center; background-color: yellow;}
+        .sub {font-style: bold; color: deeppink; font-size:18pt;}
+        img.bd {border:1px solid black;}
+        div#rht {float:right;}
+    </style>
+</head>
+
+<body>
+    <!--페이지 제목을 가장 상단에 헤딩을 이용 해 표시-->
+    <a href="20194111 최민규.html" target="_self"><h1>Choi's <em>Sneakers</em></h1></a>
+    <hr />
+    <!--제품 이름을 헤딩을 이용 해 크게 표시-->
+    <p class="sub"><b>아디다스 알파바운스</b></p>
+    <!--제품 썸네일-->
+    <img class="bd" src="알파바운스썸네일.jpg" alt="제품썸네일" />
+    <!--제품에 대한 간단한 소개, 가격, 구매버튼-->
+    <div id="rht">
+        <p class="sub"><b>59,000원</b></p>
+        <p>
+            격렬한 시합을 마친 후 지친 발에 편안함을 선사하는 남성용 슬라이드입니다.
+            <br />
+            <br />
+            무료배송
+            <br />
+            <br />
+            <form action="input.jsp" method="post">
+                컬러 선택<!--컬러 메뉴를 select 요소로 구현-->
+                <select name="color">
+                    <option value="none" selected>컬러</option>
+                    <option value="black">블랙</option>
+                </select>
+                사이즈 선택<!--사이즈 메뉴를 select 요소로 구현-->
+                <select name="size">
+                    <option value="none" selected>사이즈</option>
+                    <option value="230">230</option>
+                    <option value="240">240</option>
+                    <option value="250">250</option>
+                    <option value="260">260</option>
+                    <option value="270">270</option>
+                    <option value="280">280</option>
+                    <option value="290">290</option>
+                </select>
+                </br>
+                </br>
+                <!--구매버튼은 이미지 버튼으로 구현 (제출 버튼)-->
+                <button type="submit"><img src="구매버튼.jpg" width="300" height="60" alt="구매버튼" /></button>
+                <br /><br />
+                <input type="button" value="장바구니" onclick="window.open('장바구니.html','_blank')">
+            </form>
+
+        </p>
+    </div>
+    <hr />
+    <!--제품에 대한 자세한 설명-->
+    <pre class="cent">
+     농구화에서 영감을 받은 조절식 3-스트라이프 갑피와 부드러운 폼 라이닝이 편안한 착용감을 제공합니다.
+    인체공학적 디자인의 바운스(BOUNCE™) 풋베드가 매 스텝에 에너지 넘치는 쿠셔닝을 전달합니다.
+    </pre>
+    <ul>
+        <li>편안한 휴식과 재충전을 위한 슬라이드</li>
+        <li>3-스트라이프가 적용된 조절식 합성 소재 갑피</li>
+        <li>편안하고 부드러운 폼 라이닝</li>
+        <li>인체적인 디자인과 우수한 반발력으로 편안한 핏과 에너지 넘치는 쿠셔닝을 제공</li>
+        <li>EVA아웃솔</li>
+    </ul>
+
+    <table border="1" class="cent">
+        <tr>
+            <td>상품 상태</td>
+            <td>새상품</td>
+        </tr>
+        <tr>
+            <td>배송 방법</td>
+            <td>택배</td>
+        </tr>
+        <tr>
+            <td>배송 가능 지역</td>
+            <td>전국</td>
+        </tr>
+        <tr>
+            <td>원산지</td>
+            <td>국내</td>
+        </tr>
+    </table>
+    <hr />
+
+    <!--제품 상세 이미지-->
+    <h2 class="detail">&lt;제품 상세 이미지&gt;</h2>
+    <img src="알파바운스 상세.jpg" />
+    <hr />
+</body>
+
+</html>

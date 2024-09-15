@@ -1,0 +1,117 @@
+﻿
+
+
+<!--20194111 최민규-->
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>20194111 최민규 - 아디다스 독일군</title><!--페이지 타이틀을 학번, 이름으로 지정-->
+    <!--CSS 활용 해 페이지 스타일 지정-->
+    <style>
+        body{font-family: "a시월구일1",Arial;}
+        h1 { font-family:"a시월구일3",Times New Roman,Arial; color: black; font-size: 30pt; text-align:center;}
+        h1 em { font-family:"a시월구일3",Arial; color:gray;text-align:center;}
+        .cent {text-align: center; clear:both;}
+        .detail { color:deeppink; text-align: center; background-color: yellow;}
+        .sub {font-style: bold; color: deeppink; font-size:18pt;}
+        img.bd {border:1px solid black;}
+        div#rht {float:right;}
+        video {margin: 0px 0px 0px 500px;}
+    </style>
+</head>
+
+<body>
+    <!--페이지 제목을 가장 상단에 헤딩을 이용 해 표시-->
+    <a href="20194111 최민규.html" target="_self"><h1>Choi's <em>Sneakers</em></h1></a>
+    <hr />
+    <!--제품 이름을 헤딩을 이용 해 크게 표시-->
+    <p class="sub"><b>BW 독일군 스니커즈 - 화이트 / BZ0579</b></p>
+    <!--제품 썸네일-->
+    <img class="bd" src="독일군 썸네일.jpg" alt="제품썸네일" />
+    <!--제품에 대한 간단한 소개, 가격, 구매버튼-->
+    <div id="rht">
+        <p class="sub"><b>139,000원</b></p>
+        <p>
+            1970년대 독일 군인의 보급품으로 사용된 신발에서 영감을 받은 BW 독일군 스니커즈.
+            <br />
+            <br />
+            무료배송
+            <br />
+            <br />
+            <form action="input.jsp" method="post">
+                컬러 선택<!--컬러 메뉴를 select 요소로 구현-->
+                <select name="color">
+                    <option value="none" selected>화이트</option>
+                </select>
+                사이즈 선택<!--사이즈 메뉴를 select 요소로 구현-->
+                <select name="size">
+                    <option value="none" selected>사이즈</option>
+                    <option value="230">230</option>
+                    <option value="230">235</option>
+                    <option value="240">240</option>
+                    <option value="230">245</option>
+                    <option value="250">250</option>
+                    <option value="230">255</option>
+                    <option value="260">260</option>
+                    <option value="230">265</option>
+                    <option value="270">270</option>
+                    <option value="230">275</option>
+                    <option value="280">280</option>
+                    <option value="230">285</option>
+                    <option value="290">290</option>
+                    <option value="230">295</option>
+                </select>
+                </br>
+                </br>
+                <!--구매버튼은 이미지 버튼으로 구현 (제출 버튼)-->
+                <button type="submit"><img src="구매버튼.jpg" width="300" height="60" alt="구매버튼" /></button>
+                <br /><br />
+                <input type="button" value="장바구니" onclick="window.open('장바구니.html','_blank')">
+            </form>
+
+        </p>
+    </div>
+    <hr />
+    <!--제품에 대한 자세한 설명-->
+    <ul>
+        <li>과거 독일군의 인도어 트레이닝 슈즈 디자인 'BW 아미', 일명 '독일군 스니커즈.'</li>
+        <li>1970냔대 독일 군인의 보급품으로 만든 오리지널 모델을 살려 복각한 디자인.</li>
+        <li>아디다스의 헤리티지를 머금은 클래식 디자인.</li>
+        <li>깔끔한 블랙 레더 바디에 가죽과 스웨이드로 조화롭게 어퍼를 구상.</li>
+    </ul>
+
+    <table border="1" class="cent">
+        <tr>
+            <td>상품 상태</td>
+            <td>새상품</td>
+        </tr>
+        <tr>
+            <td>배송 방법</td>
+            <td>택배</td>
+        </tr>
+        <tr>
+            <td>배송 가능 지역</td>
+            <td>전국</td>
+        </tr>
+        <tr>
+            <td>원산지</td>
+            <td>독일</td>
+        </tr>
+    </table>
+    <hr />
+    <h2 class="detail">&lt;제품 소개 영상&gt;</h2>
+    <!--비디오 기능을 이용 한 소개 영상 재생-->
+    <video width="560" height="315" controls>
+        <source src="독일군 스니커즈 소개 영상.mp4" type="video/mp4">
+        브라우저가 비디오 요소를 지원하지 않습니다.
+    </video>
+    <hr />
+    <!--제품 상세 이미지-->
+    <h2 class="detail">&lt;제품 상세 이미지&gt;</h2>
+    <img src="독일군상세.jpg" />
+    <hr />
+</body>
+
+</html>
